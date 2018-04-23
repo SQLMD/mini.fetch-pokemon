@@ -10,6 +10,9 @@
         .then((response) => response.json())
         .then((json) => {
           return json.results.map((pokemon) => pokemon.name);
+        })
+        .catch((err) => {
+          throw err;
         });
       return pokeResponse;
     }
@@ -21,10 +24,13 @@
       let underWeight = [];
 
       for (let i = 1; i <= 10; i++) {
-        let pokemon = await this.getPokemon(i);
-
-        if (pokemon.weight < weight) {
-          underWeight.push(pokemon);
+        try {
+          let pokemon = await this.getPokemon(i);
+          if (pokemon.weight < weight) {
+            underWeight.push(pokemon);
+          }
+        } catch (err) {
+          throw err;
         }
       }
       console.log(underWeight);
