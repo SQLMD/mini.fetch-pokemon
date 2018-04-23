@@ -33,7 +33,6 @@
           throw err;
         }
       }
-      console.log(underWeight);
       return underWeight;
     }
 
